@@ -1,0 +1,32 @@
+<!-- Необходимо передать в основную страницу переменные totalPages и currentPage. Также каждая страница должна открываться с помощью ?page=[int] -->
+<nav aria-label="pagination" <%= totalPages <= 1 ? 'class=d-none aria-hidden=true' : '' %>>
+    <ul class="pagination justify-content-center fixed-bottom">
+        <% if (totalPages < 4) { %>
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <li class="page-item <%= i === currentPage ? 'disabled' : '' %>"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+        <% } else { %>
+            <li class="page-item <%= currentPage < 2 ? "disabled" : "" %>">
+                <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Предыдущая страница">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Предыдущая страница</span>
+                </a>
+            </li>
+            <% if (currentPage > 1) { %>
+                <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+            <% } %>
+            <li class="page-item disabled"><a class="page-link" href="#"><%= currentPage %></a></li>
+            <% if (currentPage < totalPages) { %>
+                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="?page=<%= totalPages %>"><%= totalPages %></a></li>
+            <% } %>
+            <li class="page-item <%= currentPage >= totalPages ? "disabled" : "" %>">
+                <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Следующая страница">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Следующая страница</span>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</nav>

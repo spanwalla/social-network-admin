@@ -1,0 +1,50 @@
+{
+  "name": "social-network-admin",
+  "version": "1.1.0",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www",
+    "gulp": "gulp dev",
+    "dev": "concurrently \"npm run gulp\" \"npm run start\"",
+    "webpack": "webpack build",
+    "cert": "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.csr"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@seald-io/nedb": "^4.0.4",
+    "bootstrap": "^5.3.3",
+    "debug": "^4.3.7",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "http-errors": "^2.0.0",
+    "joi": "^17.13.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "sass": "^1.80.4",
+    "concurrently": "^9.1.0",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "gulp": "^5.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^3.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4",
+    "css-loader": "^7.1.2",
+    "sass-loader": "^16.0.3",
+    "babel-loader": "^9.2.1",
+    "mini-css-extract-plugin": "^2.9.2",
+    "css-minimizer-webpack-plugin": "^7.0.0"
+  }
+}

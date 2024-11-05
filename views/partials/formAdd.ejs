@@ -1,0 +1,59 @@
+<form id="formAdd" method="post" class="d-flex flex-column mt-2 gap-2 col col-sm-10 col-md-6">
+    <div class="row">
+        <label for="inputFirstName" class="col-6 col-sm-5 col-md-4 col-form-label">Имя</label>
+        <div class="col">
+            <input required type="text" class="form-control" id="inputFirstName" name="firstName" placeholder="Имя" autocomplete="on">
+        </div>
+    </div>
+    <div class="row">
+        <label for="inputLastName" class="col-6 col-sm-5 col-md-4 col-form-label">Фамилия</label>
+        <div class="col">
+            <input required type="text" class="form-control" id="inputLastName" name="lastName" placeholder="Фамилия" autocomplete="on">
+        </div>
+    </div>
+    <div class="row">
+        <label for="inputBirthday" class="col-6 col-sm-5 col-md-4 col-form-label">Дата рождения</label>
+        <div class="col">
+            <input required type="date" min="1900-01-01" max="<%= new Date().toISOString().split('T')[0] %>" class="form-control" id="inputBirthday" name="birthday">
+        </div>
+    </div>
+    <div class="row">
+        <label for="inputAvatar" class="col-6 col-sm-5 col-md-4 col-form-label">Аватар</label>
+        <div class="input-group col">
+            <input type="file" accept="image/*" class="form-control" id="inputAvatar" name="avatar">
+            <button class="btn btn-outline-danger" type="button" onclick="document.getElementById('inputAvatar').value=null"><i class="fa-solid fa-trash"></i><span class="sr-only">Удалить аватар</span></button>
+        </div>
+    </div>
+    <div class="row">
+        <label for="inputEmail" class="col-6 col-sm-5 col-md-4 col-form-label">Электронная почта</label>
+        <div class="col">
+            <input required type="email" class="form-control" id="inputEmail" name="email" placeholder="Электронная почта" autocomplete="on">
+        </div>
+    </div>
+    <div class="row">
+        <label for="inputPassword" class="col-6 col-sm-5 col-md-4 col-form-label">Пароль</label>
+        <div class="col">
+            <input required type="text" class="form-control" id="inputPassword" name="password" placeholder="Пароль" autocomplete="on">
+        </div>
+    </div>
+    <div class="row">
+        <label for="selectRole" class="col-6 col-sm-5 col-md-4 col-form-label">Роль</label>
+        <div class="col">
+            <select class="form-select" id="selectRole" name="role">
+                <option selected value="user">Пользователь</option>
+                <option value="admin">Администратор</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <label for="selectStatus" class="col-6 col-sm-5 col-md-4 col-form-label">Статус</label>
+        <div class="col">
+            <select class="form-select" id="selectStatus" name="status">
+                <option selected value="active">Активный</option>
+                <option value="inactive">Неподтверждённый</option>
+                <option value="blocked">Заблокированный</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary col">Создать</button>
+</form>

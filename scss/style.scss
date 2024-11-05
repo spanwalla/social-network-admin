@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+$font-family-sans-serif: Inter, sans-serif;
+$light: #ECECEC;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$avatar-sm-size: 64px;
+$avatar-lg-size: 256px;
+$avatar-sm-radius: 16px;
+$avatar-lg-radius: 32px;
+
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin avatar($size, $radius) {
+  min-width: $size;
+  min-height: $size;
+  max-width: $size;
+  max-height: $size;
+  border-radius: $radius;
+}
+
+.no-avatar {
+  @include center-flex;
+  background-color: $dark-bg-subtle;
+}
+
+.avatar-sm {
+  @include avatar($avatar-sm-size, $avatar-sm-radius);
+}
+
+.avatar-lg {
+  @include avatar($avatar-lg-size, $avatar-lg-radius);
+}

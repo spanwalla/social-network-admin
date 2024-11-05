@@ -1,0 +1,37 @@
+<aside class="col-md-3 col-xl-2 bg-light">
+    <nav class="navbar navbar-expand-md">
+        <div class="d-flex flex-column w-100">
+            <div class="d-flex justify-content-between justify-content-lg-center flex-wrap">
+                <a class="fs-4 navbar-brand" href="/"><span class="fw-bold">Social</span>. Admin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse w-100" id="sidenavCollapse">
+                <nav class="navbar-nav nav-pills flex-column">
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#users" role="button" aria-expanded="false" aria-controls="users">
+                            <i class="fa-solid fa-users"></i> Пользователи
+                        </a>
+                        <div class="collapse" id="users">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="/users/all">Все</a>
+                                <a class="nav-link" href="/users/unconfirmed">На подтверждении</a>
+                                <a class="nav-link" href="/users/blocked">Заблокированные</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#feed" role="button" aria-expanded="false" aria-controls="feed"><i class="fa-solid fa-newspaper"></i> Посты</a>
+                        <div class="collapse" id="feed">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="/feed/all">Все</a>
+                                <a class="nav-link disabled" id="navUserFeedLink" href="#">Лента пользователя</a>
+                            </nav>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </nav>
+</aside>

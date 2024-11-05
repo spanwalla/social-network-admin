@@ -1,0 +1,39 @@
+<div class="d-flex flex-row flex-wrap justify-content-between pt-2">
+    <h2 class="fw-bold m-0 p-0"><%= heading %></h2>
+    <a class="btn btn-primary me-2 flex-nowrap" href="add"><i class="fa-solid fa-user-plus"></i> Добавить</a>
+</div>
+<table class="mt-2 table table-striped table-hover align-middle" id="usersTable">
+    <thead>
+    <tr class="text-center">
+        <th scope="col" class="text-start">Пользователь</th>
+        <th scope="col">Дата рождения</th>
+        <th scope="col">Подписчики</th>
+        <th scope="col">Подписки</th>
+        <th scope="col">Роль</th>
+        <th scope="col">Статус</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% users.forEach((user) => { %>
+        <tr class="text-center" data-id="<%= user._id %>">
+            <th scope="row" class="text-start d-flex flex-row align-items-center gap-2">
+                <% if (user.avatar !== 'no-avatar') { %>
+                    <picture>
+                        <img src="/<%= user.avatar %>" alt="Аватар пользователя" class="avatar-sm">
+                    </picture>
+                <% } else { %>
+                    <div class="no-avatar avatar-sm">
+                        <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    </div>
+                <% } %>
+                <%= `${user.firstName} ${user.lastName}`%></th>
+            <td class="text-center"><%= new Date(user.birthday).toLocaleDateString('en-GB') %></td>
+            <td><a href="<%= user._id %>/followers/"><%= user.followers ? user.followers.length : 0 %></a></td>
+            <td><a href="<%= user._id %>/following/"><%= user.following ? user.following.length : 0 %></a></td>
+            <td class="text-capitalize"><%= user.role %></td>
+            <td class="text-capitalize"><%= user.status %></td>
+        </tr>
+    <% }); %>
+    </tbody>
+</table>
+<%- include('partials/pagination', {totalPages, currentPage}) %>

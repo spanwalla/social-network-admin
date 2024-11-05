@@ -1,0 +1,20 @@
+<h2 class="fw-bold m-0 pt-2">
+    <% switch (type) {
+        case 'edit': %>
+            Редактирование пользователя
+            <% break;
+        case 'add': %>
+            Добавление пользователя
+            <% break;
+        default: %>
+            Неизвестное действие <%= type %>
+    <% } %>
+</h2>
+<% switch (type) {
+    case 'edit': %>
+        <%- include('partials/formEdit') %>
+        <% break;
+    case 'add': %>
+        <%- include('partials/formAdd') %>
+        <% break;
+} %>

@@ -1,0 +1,37 @@
+<h2 class="fw-bold m-0 py-2"><%= heading %></h2>
+<div class="d-flex flex-column gap-3">
+    <% posts.forEach((post) => { %>
+        <div class="card" data-id="<%= post._id %>">
+            <div class="card-header">
+                <small class="text-body-secondary">Опубликовано: <%= new Date(post.createdAt).toLocaleString('en-GB') %></small>
+                <% if (post.createdAt !== post.updatedAt) { %>
+                    <small class="text-body-secondary">(обновлено: <%= new Date(post.updatedAt).toLocaleString('en-GB') %>)</small>
+                <% } %>
+            </div>
+            <div class="card-body">
+                <% const author = authors.get(post.authorId) || {firstName: "DELETED", lastName: "", avatar: "no-avatar"}; %>
+                <div class="d-flex flex-row flex-wrap align-items-center gap-2 card-title">
+                    <% if (author.avatar !== 'no-avatar') { %>
+                        <picture>
+                            <img src="/<%= author.avatar %>" alt="Аватар пользователя" class="avatar-sm">
+                        </picture>
+                    <% } else { %>
+                        <div class="no-avatar avatar-sm">
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
+                        </div>
+                    <% } %>
+                    <h3 class="fs-5"><%= author.firstName + ' ' + author.lastName %></h3>
+                </div>
+                <p class="card-text"><%= post.content %></p>
+            </div>
+            <% if (post.media.length > 0) {
+                post.media.forEach((attachment) => { %>
+                    <picture>
+                        <img class="card-img-bottom" src="<%= attachment.path %>" alt="Вложение">
+                    </picture>
+                <% });
+            } %>
+        </div>
+    <% }); %>
+</div>
+<%- include('partials/pagination', {totalPages, currentPage}) %>

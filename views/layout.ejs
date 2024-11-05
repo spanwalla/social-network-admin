@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Панель администрирования Social.">
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="/fontawesome/css/solid.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <title><%= title %></title>
+</head>
+<body class="m-0 row vh-100 overflow-auto">
+    <%- include('partials/navbar') %>
+    <main class="col" style="min-height: 90%;">
+        <%- main %>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<% if (customScripts && customScripts.length > 0) { %>
+    <% for (const script of customScripts) { %>
+        <script src="/js/<%= script %>.min.js"></script>
+    <% } %>
+<% } %>
+</body>
+</html>

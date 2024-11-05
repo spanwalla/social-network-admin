@@ -1,0 +1,84 @@
+<div class="d-flex flex-row flex-wrap gap-2 pt-2" id="userShort" data-id="<%= user._id %>">
+    <% if (user.avatar !== 'no-avatar') { %>
+        <picture>
+            <img src="/<%= user.avatar %>" alt="Аватар пользователя" class="avatar-lg">
+        </picture>
+    <% } else { %>
+        <div class="no-avatar avatar-lg">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+        </div>
+    <% } %>
+    <div class="d-flex flex-column col">
+        <div class="d-flex flex-row flex-wrap justify-content-between gap-1">
+            <h2 class="fw-bold m-0 p-0"><%= user.firstName + ' ' + user.lastName %></h2>
+            <div class="d-flex gap-1 flex-wrap btn">
+                <a class="btn btn-primary me-2 text-nowrap" href="edit"><i class="fa-solid fa-user-edit" aria-hidden="true"></i> Редактировать</a>
+                <button type="button" id="buttonDelete" class="btn btn-danger me-2 text-nowrap" data-bs-toggle="modal" data-bs-target="#deleteConfirm"><i class="fa-solid fa-user-minus" aria-hidden="true"></i> Удалить</button>
+            </div>
+        </div>
+        <p class="m-0 p-0" id="bio"><%= user.bio %></p>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteConfirmLabel">Подтверждение удаления</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                Вы уверены, что хотите удалить этого пользователя?<br>
+                Это действие необратимо.<br>
+                Вместо этого вы можете заблокировать пользователя.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отменить</button>
+                <form method="post" id="formDelete">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" value="<%= user._id %>">
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-sm table-borderless align-middle">
+    <caption class="caption-top fs-4">Информация о пользователе</caption>
+    <tbody>
+    <tr>
+        <th scope="row">Дата рождения</th>
+        <td><%= new Date(user.birthday).toLocaleDateString('en-GB') %></td>
+    </tr>
+    <tr>
+        <th scope="row">Подписчики</th>
+        <td><a href="followers/"><%= user.followers ? user.followers.length : 0 %></a></td>
+    </tr>
+    <tr>
+        <th scope="row">Подписки</th>
+        <td><a href="following/"><%= user.following ? user.following.length : 0 %></a></td>
+    </tr>
+    <tr>
+        <th scope="row">Статус</th>
+        <td class="text-capitalize"><%= user.status %></td>
+    </tr>
+    <tr>
+        <th scope="row">Роль</th>
+        <td class="text-capitalize"><%= user.role %></td>
+    </tr>
+    <tr>
+        <th scope="row">Электронная почта</th>
+        <td><%= user.email %></td>
+    </tr>
+    <tr>
+        <th scope="row">Создан</th>
+        <td><%= new Date(user.createdAt).toLocaleString('en-GB') %></td>
+    </tr>
+    <tr>
+        <th scope="row">Обновлён</th>
+        <td><%= new Date(user.updatedAt).toLocaleString('en-GB') %></td>
+    </tr>
+    </tbody>
+</table>

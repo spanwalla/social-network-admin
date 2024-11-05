@@ -1,0 +1,18 @@
+<h2 class="fw-bold m-0 py-2"><%= heading %></h2>
+<div class="list-group">
+    <% users.forEach((user) => { %>
+        <a href="/users/<%= user._id %>/" class="list-group-item list-group-item-action d-flex flex-wrap align-items-center gap-2">
+            <% if (user.avatar !== 'no-avatar') { %>
+                <picture>
+                    <img src="/<%= user.avatar %>" alt="Аватар пользователя" class="avatar-sm">
+                </picture>
+            <% } else { %>
+                <div class="no-avatar avatar-sm">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                </div>
+            <% } %>
+            <span><%= user.firstName + ' ' + user.lastName %></span>
+        </a>
+    <% }); %>
+</div>
+<%- include('partials/pagination', {totalPages, currentPage}) %>
