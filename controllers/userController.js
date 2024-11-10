@@ -1,3 +1,4 @@
+import Joi from 'joi';
 import {users} from '../models/collections.js';
 import {
     publicUsersArraySchema,
@@ -37,6 +38,37 @@ const registerUser = async (req, res) => {
         return res.status(500).json({error: error.message});
     }
 };
+
+const loginUser = async (req, res) => {
+    const loginUserSchema = Joi.object({
+        email: Joi.string().email().messages({
+            'string.email': 'Адрес электронной почты некорректен'
+        }),
+        password: Joi.string().min(6).max(64).messages({
+            'string.min': 'Пароль должен содержать минимум 6 символов',
+            'string.max': 'Пароль должен содержать не более 64 символов'
+        })
+    });
+
+    const {error, value} = loginUserSchema.validate(req.body, {
+        stripUnknown: true,
+        abortEarly: false,
+        allowUnknown: false
+    });
+
+    if (error) {
+        return res.status(422).json({error: error.message});
+    }
+
+    try {
+        const user = await users.findOne(value, {firstName: 1, lastName: 1, role: 1, status: 1});
+        if (!user)
+            return res.status(401).json({error: "Wrong email or password."})
+        return res.status(200).json(user);
+    } catch (error) {
+        return res.status(500).json({error: error.message});
+    }
+}
 
 const updateUser = async (req, res) => {
     let {error, value} = updateUserSchema.validate(req.body, {
@@ -152,4 +184,4 @@ const deleteUser = async (req, res) => {
     }
 }
 
-export {registerUser, getAllUsers, getUserById, getUserFollowing, getUserFollowers, getUsersByQuery, updateUser, deleteUser};
+export {registerUser, loginUser, getAllUsers, getUserById, getUserFollowing, getUserFollowers, getUsersByQuery, updateUser, deleteUser};

@@ -12,6 +12,7 @@ router.get('/user/:id', userController.getUserById);
 router.get('/user/:id/following', userController.getUserFollowing);
 router.get('/user/:id/followers', userController.getUserFollowers);
 router.post('/user', uploadImage.single('avatar'), userController.registerUser);
+router.post('/user/login', userController.loginUser);
 router.patch('/user/:id', uploadImage.single('avatar'), userController.updateUser);
 router.delete('/user/:id', userController.deleteUser);
 router.post('/subscribe', followController.followUser);
